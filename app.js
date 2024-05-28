@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const path = require('path')
 const ErrorController = require('./Controllers/ErrorController')
 const AppError = require('./Utils/AppError')
 const categoryRouter = require('./Routes/CategoryRouter')
@@ -14,6 +15,10 @@ const commentRouter = require('./Routes/CommentRoutes')
 app.use(cors())
 app.options('*', cors());
 app.use(express.json())
+
+app.use(express.static(path.resolve(__dirname,'build')))
+
+
 app.use('/category',express.static('./Multer/images/category'))
 app.use('/HomeBlog',express.static('./Multer/images/HomeBlog'))
 app.use('/Blog',express.static('./Multer/images/Blog'))
